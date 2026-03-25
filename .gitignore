@@ -1,0 +1,25 @@
+.vs/
+.vscode/
+
+# Build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.pidb
+
+# VS tooling
+*.vsix
+*.cache
+*.log
+
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
+
