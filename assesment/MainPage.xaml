@@ -1,57 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="todoapp.MainPage"
-             xmlns:viewmodel="clr-namespace:todoapp.ViewModel"
-             x:DataType="viewmodel:MainViewModel">
+             x:Class="assesment.MainPage">
 
-    <Grid RowDefinitions="100, Auto, *"
-          ColumnDefinitions=".75*, .25*"
-          Padding="10"
-          RowSpacing="10"
-          ColumnSpacing="10">
+    <ScrollView>
+        <!-- Main layout for the page -->
+        <VerticalStackLayout
+                Padding="30,0"
+                Spacing="12">
+            <!-- Title -->
+            <Label Text="Enter the food you wasted and its price"
+                   Style="{StaticResource Headline}"
+                   SemanticProperties.HeadingLevel="Level1" />
 
-        <Image Grid.ColumnSpan="2"
-               Source="dotnet_bot.png"
-               BackgroundColor="Transparent"/>
+            <!-- Food name -->
+            <Entry x:Name="txtFoodName"
+                   Placeholder="e.g., Apple"
+                   AutomationId="FoodNameEntry" />
 
-        <Entry Placeholder="Enter task"
-               Text="{Binding Text}"
-               Grid.Row="1"/>
+            <!-- Price -->
+            <Entry x:Name="txtWasteAmount"
+                   Placeholder="0.00"
+                   Keyboard="Numeric"
+                   AutomationId="PriceEntry" />
 
-        <Button Text="Add"
-                Grid.Row="1"
-                Grid.Column="1"/>
+            <!-- Add button -->
+            <Button x:Name="btnSubmit"
+                    Text="Add to total"
+                    SemanticProperties.Hint="Amount wasted"
+                    Clicked="OnCalculate"
+                    HorizontalOptions="Fill" />
 
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="2">
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Apples</x:String>
-                    <x:String>Oranges</x:String>
-                    <x:String>Bananas</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                           BackgroundColor="Red"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid Padding="0,5">
-                            <Frame>
-                                <Label Text="{Binding .}"
-                                       FontSize="24"/>
+            <!-- List of added items shown above the total -->
+            <CollectionView x:Name="cvWasteItems"
+                            HeightRequest="180"
+                            SelectionMode="None"
+                            Margin="2,8">
+
+                <!-- spacing between items -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                               BackgroundColor="Red"
+                                               Clicked="OnDeleteItem"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame Padding="8">
+                                <HorizontalStackLayout Spacing="18">
+                                    <Label Text="{Binding Name}" VerticalOptions="Center" />
+                                    <Label Text="{Binding Price, StringFormat='${0:F2}'}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand" />
+                                </HorizontalStackLayout>
                             </Frame>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </Grid>
-
+            <!-- Total and warnings -->
+            <Label x:Name="lblLetterGrade"
+                   Text="Total Wasted: $0.00"
+                   Style="{StaticResource.Headline}"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label x:Name="lblWarning"
+                   TextColor="Red"
+                   SemanticProperties.HeadingLevel="Level1"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
-
