@@ -8,6 +8,7 @@
         <VerticalStackLayout
                 Padding="30,0"
                 Spacing="12">
+
             <!-- Title -->
             <Label Text="Enter the food you wasted and its price"
                    Style="{StaticResource Headline}"
@@ -23,6 +24,11 @@
                    Placeholder="0.00"
                    Keyboard="Numeric"
                    AutomationId="PriceEntry" />
+
+            <!-- Day picker (replaces the Entry) -->
+            <Picker x:Name="pickerDay"
+                    Title="Select day wasted"
+                    AutomationId="DayPicker" />
 
             <!-- Add button -->
             <Button x:Name="btnSubmit"
@@ -53,27 +59,38 @@
                                 </SwipeItems>
                             </SwipeView.RightItems>
 
-                            <Frame Padding="8">
-                                <HorizontalStackLayout Spacing="18">
-                                    <Label Text="{Binding Name}" VerticalOptions="Center" />
-                                    <Label Text="{Binding Price, StringFormat='${0:F2}'}"
+                            <!-- Adds a border around the item -->
+                            <Border Padding="8">
+                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto">
+                                    <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Price, StringFormat='${0:F2}'}"
                                            VerticalOptions="Center"
-                                           HorizontalOptions="EndAndExpand" />
-                                </HorizontalStackLayout>
-                            </Frame>
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                            </Border>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <!-- Per-day sub-sections (collapsible) -->
+            <StackLayout x:Name="slDaySections" Spacing="8" />
+
             <!-- Total and warnings -->
             <Label x:Name="lblLetterGrade"
-                   Text="Total Wasted: $0.00"
-                   Style="{StaticResource.Headline}"
+                   Text="Total Wasted for the week: $0.00"
+                   Style="{StaticResource Headline}"
                    SemanticProperties.HeadingLevel="Level1" />
             <Label x:Name="lblWarning"
                    TextColor="Red"
                    SemanticProperties.HeadingLevel="Level1"/>
+            <!--Resets the week amount
+            <Button x:Name="btnReset"
+                Text="Reset"
+                Clicked="OnReset"
+                HorizontalOptions="Fill" />
+            -->
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
