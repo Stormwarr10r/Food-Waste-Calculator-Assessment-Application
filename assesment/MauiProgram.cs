@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using assesment.Services;
 
 namespace assesment
 {
@@ -18,6 +19,8 @@ namespace assesment
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //Adds Json storage
+            builder.Services.AddSingleton<IFoodWasteStore, FoodWasteStore>();
 
             return builder.Build();
         }
