@@ -53,6 +53,20 @@ namespace assesment.Services
             }
         }
 
+        public async Task RemoveAsync(string id)
+        {
+            await _lock.WaitAsync().ConfigureAwait(false);
+            try
+            {
+                await EnsureLoadedAsync().ConfigureAwait(false);
+                _entries.RemoveAll(e => e.Id == id);
+            }
+            finally
+            {
+                _lock.Release();
+            }
+        }
+
         public async Task SaveAsync()
         {
             await _lock.WaitAsync().ConfigureAwait(false);

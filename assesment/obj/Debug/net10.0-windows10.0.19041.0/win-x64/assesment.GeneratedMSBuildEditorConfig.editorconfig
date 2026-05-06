@@ -14,7 +14,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = assesment
-build_property.ProjectDir = C:\Users\blake\source\repos\assesment\assesment\
+build_property.ProjectDir = C:\Users\blake\OneDrive\Documents\Food-Waste-Calculator-Assessment-Application\assesment\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTAotOptimizerEnabled = true
@@ -28,7 +28,7 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/blake/source/repos/assesment/assesment/App.xaml]
+[C:/Users/blake/OneDrive/Documents/Food-Waste-Calculator-Assessment-Application/assesment/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = assesment.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
@@ -38,7 +38,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/blake/source/repos/assesment/assesment/AppShell.xaml]
+[C:/Users/blake/OneDrive/Documents/Food-Waste-Calculator-Assessment-Application/assesment/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = assesment.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
@@ -48,7 +48,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/blake/source/repos/assesment/assesment/MainPage.xaml]
+[C:/Users/blake/OneDrive/Documents/Food-Waste-Calculator-Assessment-Application/assesment/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = assesment.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
@@ -58,7 +58,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/blake/source/repos/assesment/assesment/Resources/Styles/Colors.xaml]
+[C:/Users/blake/OneDrive/Documents/Food-Waste-Calculator-Assessment-Application/assesment/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = assesment.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
@@ -68,7 +68,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/blake/source/repos/assesment/assesment/Resources/Styles/Styles.xaml]
+[C:/Users/blake/OneDrive/Documents/Food-Waste-Calculator-Assessment-Application/assesment/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = assesment.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using SQLite;
 using Microsoft.Maui.Controls;
+using assesment.Services;
+using assesment.Models;
 
 namespace assesment
 {
@@ -22,9 +25,18 @@ namespace assesment
             "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
         };
 
+        // Inject the food waste store for persistence
+        private readonly IFoodWasteStore _foodWasteStore;
+
         public MainPage()
         {
             InitializeComponent();
+
+            // Get the store from DI container
+            _foodWasteStore = IPlatformApplication.Current!.Services.GetService<IFoodWasteStore>()
+                ?? throw new InvalidOperationException("IFoodWasteStore not registered in DI container");
+
+            LoadDataAsync();
 
             // populate day picker
             pickerDay.ItemsSource = days;
@@ -41,6 +53,43 @@ namespace assesment
 
                 var section = CreateDaySection(day, collection);
                 slDaySections.Add(section);
+            }
+        }
+
+        // Load saved data from the store on app startup
+        private async void LoadDataAsync()
+        {
+            try
+            {
+                var entries = await _foodWasteStore.GetAllAsync();
+                if (entries != null && entries.Count > 0)
+                {
+                    foreach (var entry in entries)
+                    {
+                        var item = new WasteItem 
+                        { 
+                            Id = entry.Id,
+                            Name = entry.Name, 
+                            Price = entry.Price, 
+                            Day = entry.Day 
+                        };
+
+                        if (!dayCollections.TryGetValue(entry.Day, out var collection))
+                        {
+                            collection = new ObservableCollection<WasteItem>();
+                            dayCollections[entry.Day] = collection;
+                        }
+
+                        collection.Add(item);
+                        totalFood += item.Price;
+                    }
+
+                    lblLetterGrade.Text = $"Total Wasted for the week: ${totalFood:F2}";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading data: {ex.Message}");
             }
         }
 
@@ -203,6 +252,30 @@ namespace assesment
             txtWasteAmount.Text = string.Empty;
             pickerDay.SelectedIndex = -1;
             txtFoodName.Focus();
+
+            // Save to persistent storage
+            SaveItemAsync(item);
+        }
+
+        // Save a single item to the store
+        private async void SaveItemAsync(WasteItem item)
+        {
+            try
+            {
+                var entry = new FoodWasteEntry
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Price = item.Price,
+                    Day = item.Day
+                };
+                await _foodWasteStore.AddAsync(entry);
+                await _foodWasteStore.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error saving item: {ex.Message}");
+            }
         }
 
         // Loop for deleting items from the collection and updating the total, handling potential issues with item removal
@@ -248,6 +321,42 @@ namespace assesment
                 if (totalFood < 0) totalFood = 0;
                 lblLetterGrade.Text = $"Total Wasted for the week: ${totalFood:F2}";
                 lblWarning.Text = string.Empty;
+
+                // Reload from store to ensure sync
+                ReloadFromStoreAsync();
+            }
+        }
+
+        // Reload data from store to ensure persistence
+        private async void ReloadFromStoreAsync()
+        {
+            try
+            {
+                // First, rebuild the store from current UI state
+                var allItems = new List<WasteItem>();
+                foreach (var collection in dayCollections.Values)
+                {
+                    allItems.AddRange(collection);
+                }
+
+                // Clear the store and reload with current items
+                await _foodWasteStore.ClearAsync();
+                foreach (var item in allItems)
+                {
+                    var entry = new FoodWasteEntry
+                    {
+                        Id = item.Id,
+                        Name = item.Name,
+                        Price = item.Price,
+                        Day = item.Day
+                    };
+                    await _foodWasteStore.AddAsync(entry);
+                }
+                await _foodWasteStore.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error reloading data: {ex.Message}");
             }
         }
     }
@@ -258,7 +367,7 @@ namespace assesment
     {
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        
+
         public string Name { get; set; } = string.Empty;
         public double Price { get; set; }
 

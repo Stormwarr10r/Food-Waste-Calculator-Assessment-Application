@@ -26,9 +26,9 @@ namespace assesment.ViewModels
             foreach (var I in items) Entries.Add(I);
         }
 
-        public async Task AddAsync(string name, double qty, string? notes = null)
+        public async Task AddAsync(string name, double price, string day, string? notes = null)
         {
-            var entry = new FoodWasteEntry { Name = name, Quantity = qty, Note = notes };
+            var entry = new FoodWasteEntry { Name = name, Price = price, Day = day, Note = notes };
             await _store.AddAsync(entry);
             await _store.SaveAsync();
         }

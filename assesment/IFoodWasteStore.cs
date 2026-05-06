@@ -9,8 +9,11 @@ namespace assesment.Services
     {
         //preliminaries for foodwastestore.cs
         Task<List<FoodWasteEntry>> GetEntriesAsync();
+        Task<List<FoodWasteEntry>> GetAllAsync();
         Task AddAsync(FoodWasteEntry entry);
+        Task RemoveAsync(string id);
         Task SaveAsync();
         Task ClearAsync();
     }
 }
+
