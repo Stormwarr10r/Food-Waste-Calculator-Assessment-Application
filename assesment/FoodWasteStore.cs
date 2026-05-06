@@ -23,6 +23,7 @@ namespace assesment.Services
             PropertyNameCaseInsensitive = true
         };
 
+        //creates or finds a path
         public FoodWasteStore()
         {
             _filePath = Path.Combine(FileSystem.AppDataDirectory, FileName);
@@ -34,11 +35,13 @@ namespace assesment.Services
             return new List<FoodWasteEntry>(_entries);
         }
 
+        //syncs path and returns entries
         public async Task<List<FoodWasteEntry>> GetAllAsync()
         {
             return await GetEntriesAsync();
         }
 
+        //adds entry to the list and saves it to the file
         public async Task AddAsync(FoodWasteEntry entry)
         {
             await _lock.WaitAsync().ConfigureAwait(false);
@@ -53,6 +56,8 @@ namespace assesment.Services
             }
         }
 
+
+        //removes entry from the list and saves it to the file
         public async Task RemoveAsync(string id)
         {
             await _lock.WaitAsync().ConfigureAwait(false);
@@ -67,6 +72,7 @@ namespace assesment.Services
             }
         }
 
+        //saves the current state of the entries to the file
         public async Task SaveAsync()
         {
             await _lock.WaitAsync().ConfigureAwait(false);
@@ -80,6 +86,7 @@ namespace assesment.Services
             }
         }
 
+        //clears all entries and saves the empty list to the file
         public async Task ClearAsync()
         {
             await _lock.WaitAsync().ConfigureAwait(false);
@@ -94,6 +101,7 @@ namespace assesment.Services
             }
         }
 
+        //loads entries from the file if they haven't been loaded yet
         private async Task EnsureLoadedAsync()
         {
             if (_entries.Count > 0) return;
@@ -105,6 +113,7 @@ namespace assesment.Services
             }
         }
 
+        //writes the current entries to the file in JSON format
         private async Task WriteFileAsync()
         {
             var json = JsonSerializer.Serialize(_entries, _options);

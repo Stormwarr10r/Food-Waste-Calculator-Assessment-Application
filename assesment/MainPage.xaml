@@ -37,6 +37,15 @@
                     Clicked="OnCalculate"
                     HorizontalOptions="Fill" />
 
+            <!-- Total and warnings -->
+            <Label x:Name="lblLetterGrade"
+               Text="Total Wasted for the week: $0.00"
+               Style="{StaticResource Headline}"
+               SemanticProperties.HeadingLevel="Level1" />
+            <Label x:Name="lblWarning"
+               TextColor="Red"
+               SemanticProperties.HeadingLevel="Level1"/>
+
             <!-- List of added items shown above the total -->
             <CollectionView x:Name="cvWasteItems"
                             HeightRequest="180"
@@ -77,20 +86,13 @@
             <!-- Per-day sub-sections (collapsible) -->
             <StackLayout x:Name="slDaySections" Spacing="8" />
 
-            <!-- Total and warnings -->
-            <Label x:Name="lblLetterGrade"
-                   Text="Total Wasted for the week: $0.00"
-                   Style="{StaticResource Headline}"
-                   SemanticProperties.HeadingLevel="Level1" />
-            <Label x:Name="lblWarning"
-                   TextColor="Red"
-                   SemanticProperties.HeadingLevel="Level1"/>
-            <!--Resets the week amount
+            
+            <!--Resets the week amount  -->
             <Button x:Name="btnReset"
                 Text="Reset"
                 Clicked="OnReset"
                 HorizontalOptions="Fill" />
-            -->
+           
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

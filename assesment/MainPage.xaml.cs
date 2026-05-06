@@ -38,14 +38,14 @@ namespace assesment
 
             LoadDataAsync();
 
-            // populate day picker
+            // adds day picker
             pickerDay.ItemsSource = days;
 
             // bind the collection to the CollectionView
             cvWasteItems.ItemsSource = wasteItems;
             lblLetterGrade.Text = $"Total Wasted: ${totalFood:F2}";
 
-            // create per-day sections on the main page (collapsed by default)
+            // create per day sections on the main page 
             foreach (var day in days)
             {
                 var collection = new ObservableCollection<WasteItem>();
@@ -96,7 +96,7 @@ namespace assesment
         // Creates a collapsible section for a given day
         View CreateDaySection(string day, ObservableCollection<WasteItem> items)
         {
-            // header label (wrapped in a Frame so it looks like the screenshot)
+            // header label
             var headerLabel = new Label
             {
                 Text = $"{day} (0)",
@@ -179,7 +179,7 @@ namespace assesment
             // remember the CollectionView for updates/removal
             dayCollectionViews[day] = cv;
 
-            // tap toggles visibility (use a tap gesture so header looks like a label)
+            // tap toggles visibility 
             var tap = new TapGestureRecognizer();
             tap.Tapped += (s, e) => { cv.IsVisible = !cv.IsVisible; };
             headerFrame.GestureRecognizers.Add(tap);
@@ -324,6 +324,7 @@ namespace assesment
 
                 // Reload from store to ensure sync
                 ReloadFromStoreAsync();
+
             }
         }
 
@@ -359,19 +360,54 @@ namespace assesment
                 Debug.WriteLine($"Error reloading data: {ex.Message}");
             }
         }
-    }
 
-    // simple model for display
-    [Table("WasteItem")]
-    public class WasteItem
-    {
-        [PrimaryKey]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        // Reset all items and clear the total
+        private async void OnReset(object sender, EventArgs e)
+        {
+            bool confirm = await DisplayAlert(
+                "Confirm Reset",
+                "Are you sure you want to clear all items and reset the total wasted?",
+                "Yes",
+                "Cancel");
+            
+            if (!confirm) return;
 
-        public string Name { get; set; } = string.Empty;
-        public double Price { get; set; }
+            try
+            {
+                // Clear all day collections
+                foreach (var collection in dayCollections.Values)
+                {
+                    collection.Clear();
+                }
+                wasteItems.Clear();
+                // Reset total
+                totalFood = 0;
+                lblLetterGrade.Text = $"Total Wasted for the week: ${totalFood:F2}";
+                lblWarning.Text = string.Empty;
+                // Clear persistent storage
+                await _foodWasteStore.ClearAsync();
 
-        // day for the item
-        public string Day { get; set; } = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error resetting data: {ex.Message}");
+                lblWarning.Text = "Error clearing data. Please try again.";
+            }
+        }
+
+
+        // simple model for display
+        [Table("WasteItem")]
+        public class WasteItem
+        {
+            [PrimaryKey]
+            public string Id { get; set; } = Guid.NewGuid().ToString();
+
+            public string Name { get; set; } = string.Empty;
+            public double Price { get; set; }
+
+            // day for the item
+            public string Day { get; set; } = string.Empty;
+        }
     }
 }
