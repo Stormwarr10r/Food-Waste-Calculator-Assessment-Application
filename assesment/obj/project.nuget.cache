@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zgAjYvGXVYI=",
+  "dgSpecHash": "56XX0C2Imag=",
   "success": true,
   "projectFilePath": "C:\\Users\\blake\\OneDrive\\Documents\\Food-Waste-Calculator-Assessment-Application\\assesment\\assesment.csproj",
   "expectedPackageFiles": [
@@ -134,9 +134,14 @@
     "C:\\Users\\blake\\.nuget\\packages\\microsoft.android.ref.35\\35.0.105\\microsoft.android.ref.35.35.0.105.nupkg.sha512",
     "C:\\Users\\blake\\.nuget\\packages\\microsoft.ios.runtime.iossimulator-x64.net9.0_26.2\\26.2.9008\\microsoft.ios.runtime.iossimulator-x64.net9.0_26.2.26.2.9008.nupkg.sha512",
     "C:\\Users\\blake\\.nuget\\packages\\microsoft.ios.ref.net9.0_26.2\\26.2.9008\\microsoft.ios.ref.net9.0_26.2.26.2.9008.nupkg.sha512",
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.maccatalyst.runtime.maccatalyst-arm64.net9.0_26.2\\26.2.9008\\microsoft.maccatalyst.runtime.maccatalyst-arm64.net9.0_26.2.26.2.9008.nupkg.sha512",
     "C:\\Users\\blake\\.nuget\\packages\\microsoft.maccatalyst.runtime.maccatalyst-x64.net9.0_26.2\\26.2.9008\\microsoft.maccatalyst.runtime.maccatalyst-x64.net9.0_26.2.26.2.9008.nupkg.sha512",
     "C:\\Users\\blake\\.nuget\\packages\\microsoft.maccatalyst.ref.net9.0_26.2\\26.2.9008\\microsoft.maccatalyst.ref.net9.0_26.2.26.2.9008.nupkg.sha512",
-    "C:\\Users\\blake\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512"
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\9.0.15\\microsoft.netcore.app.crossgen2.win-x64.9.0.15.nupkg.sha512",
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512",
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\9.0.15\\microsoft.aspnetcore.app.runtime.win-x64.9.0.15.nupkg.sha512",
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\9.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.9.0.15.nupkg.sha512",
+    "C:\\Users\\blake\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\9.0.15\\microsoft.netcore.app.runtime.win-x64.9.0.15.nupkg.sha512"
   ],
   "logs": []
 }
