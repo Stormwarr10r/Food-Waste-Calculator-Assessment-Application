@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assesment.InstructionsPage"
+             Title="Instructions">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <!-- How to Use Section -->
+            <Label Text="How to Use"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4" />
+
+            <Label Text="1. In the top input box, enter the name of the food item you wasted."
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="2. In the second input box, enter the price of the food you wasted."
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="3. Use the dropdown to select the day of the week you wasted the food."
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="4. Click the 'Add to total' button to add the amount to your weekly total."
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="5. The total wasted for the week will be shown at the bottom of the page."
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Rules Section -->
+            <Label Text="Rules"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4"
+                   Margin="0,12,0,0" />
+
+            <Label Text="• All food names must be entered or a name error will appear"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="• All prices must be in number form or a numerical error will appear"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="• A day must be selected or a day selection error will appear"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Features Section -->
+            <Label Text="Features"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#512BD4"
+                   Margin="0,12,0,0" />
+
+            <Label Text="• Organize items by day of the week"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="• Swipe left on any item to delete it"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="• View running total of all food wasted"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+            <Label Text="• Reset all data with the Reset button at the bottom"
+                   FontSize="14"
+                   LineBreakMode="WordWrap" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

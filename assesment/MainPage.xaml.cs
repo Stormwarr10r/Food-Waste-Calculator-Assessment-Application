@@ -220,6 +220,7 @@ namespace assesment
                 lblWarning.Text = "Please select a day.";
                 return;
             }
+
             //checks if price is a valid number or if it's negative
             if (!double.TryParse(priceText, NumberStyles.Number, CultureInfo.CurrentCulture, out double wasteAmount))
             {
@@ -230,6 +231,13 @@ namespace assesment
             if (wasteAmount < 0)
             {
                 lblWarning.Text = "Please enter a non-negative amount.";
+                return;
+            }
+
+            // Check if price has more than 2 decimal places
+            if (HasMoreThanTwoDecimalPlaces(priceText))
+            {
+                lblWarning.Text = "Price can only have up to 2 decimal places (e.g., 10.50).";
                 return;
             }
 
@@ -359,6 +367,22 @@ namespace assesment
             {
                 Debug.WriteLine($"Error reloading data: {ex.Message}");
             }
+        }
+
+        // Helper method to check if a price string has more than 2 decimal places
+        private bool HasMoreThanTwoDecimalPlaces(string priceText)
+        {
+            if (string.IsNullOrWhiteSpace(priceText))
+                return false;
+
+            // Find the decimal point
+            int decimalIndex = priceText.IndexOf('.');
+            if (decimalIndex == -1)
+                return false; // No decimal point, so 0 decimal places
+
+            // Check how many digits are after the decimal point
+            int decimalPlaces = priceText.Length - decimalIndex - 1;
+            return decimalPlaces > 2;
         }
 
         // Reset all items and clear the total
