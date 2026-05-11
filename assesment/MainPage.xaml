@@ -46,7 +46,7 @@
                TextColor="Red"
                SemanticProperties.HeadingLevel="Level1"/>
 
-            <!-- List of added items shown above the total -->
+            <!-- Old list which is now inactive but has to live for code to function -->
             <CollectionView x:Name="cvWasteItems"
                             HeightRequest="0"
                             SelectionMode="None"
