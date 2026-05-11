@@ -48,7 +48,7 @@
 
             <!-- List of added items shown above the total -->
             <CollectionView x:Name="cvWasteItems"
-                            HeightRequest="180"
+                            HeightRequest="0"
                             SelectionMode="None"
                             Margin="2,8">
 
